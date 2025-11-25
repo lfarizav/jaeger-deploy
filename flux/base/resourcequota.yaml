@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: jaeger-namespace-quota
+  namespace: jaeger
+spec:
+  hard:
+    requests.cpu: "128mi"
+    requests.memory: 128Mi
+    limits.cpu: "256mi"
+    limits.memory: 256Mi
+    pods: "10"
