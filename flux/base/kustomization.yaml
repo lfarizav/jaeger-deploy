@@ -8,4 +8,4 @@ resources:
 - slack-provider.yaml
 - jaeger-alert.yaml
 - slack-notif-alert.yaml
- - resourcequota.yaml
+- resourcequota.yaml
