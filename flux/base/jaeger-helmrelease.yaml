@@ -49,9 +49,13 @@ spec:
         - name: COLLECTOR_OTLP_ENABLED
           value: "true"
       
-    # Storage configuration (in-memory for now)
+    # Storage configuration (in-memory for all-in-one)
     storage:
-      type: none
+      type: memory
+    
+    # Disable cassandra (not needed for all-in-one)
+    cassandra:
+      enabled: false
     
     # Disable separate components (using all-in-one)
     agent:
