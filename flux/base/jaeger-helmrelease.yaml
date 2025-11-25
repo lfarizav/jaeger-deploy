@@ -36,8 +36,10 @@ spec:
     # Deploy Jaeger all-in-one for simplicity
     allInOne:
       enabled: true
-      image: jaegertracing/all-in-one
-      tag: "1.52"
+      image:
+        registry: docker.io
+        repository: jaegertracing/all-in-one
+        tag: "1.52"
       # Expose Jaeger UI via NodePort
       service:
         type: NodePort
