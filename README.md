@@ -33,3 +33,4 @@ Jaeger UI is accessible at:
 
 Keptn is configured to send traces to Jaeger collector at:
 - `jaeger-collector.jaeger.svc.cluster.local:14250` (gRPC)
+# jaeger-deploy
