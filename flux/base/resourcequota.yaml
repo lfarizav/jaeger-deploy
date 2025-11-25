@@ -5,8 +5,8 @@ metadata:
   namespace: jaeger
 spec:
   hard:
-    requests.cpu: "128m"
-    requests.memory: 128Mi
-    limits.cpu: "256m"
-    limits.memory: 256Mi
+    requests.cpu: "512m"
+    requests.memory: 512Mi
+    limits.cpu: "512m"
+    limits.memory: 512Mi
     pods: "10"
