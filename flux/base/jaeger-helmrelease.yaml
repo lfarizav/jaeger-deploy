@@ -38,28 +38,22 @@ spec:
       enabled: true
       image: jaegertracing/all-in-one
       tag: "1.52"
-      
-    # Expose Jaeger UI via NodePort
-    query:
+      # Expose Jaeger UI via NodePort
       service:
         type: NodePort
         nodePort: 30686
-    
-    # Enable gRPC collector for Keptn
-    collector:
-      service:
-        grpc:
-          port: 14250
-    
+      # Enable OTLP gRPC collector for Keptn
+      extraEnv:
+        - name: COLLECTOR_OTLP_ENABLED
+          value: "true"
+      
     # Storage configuration (in-memory for now)
     storage:
       type: none
     
-    # Jaeger agent disabled (using collector directly)
+    # Disable separate components (using all-in-one)
     agent:
       enabled: false
-    
-    # Disable separate collector/query (using all-in-one)
     collector:
       enabled: false
     query:
