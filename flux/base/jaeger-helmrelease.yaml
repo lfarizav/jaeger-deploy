@@ -44,10 +44,6 @@ spec:
       service:
         type: NodePort
         nodePort: 30686
-      # Enable OTLP gRPC collector for Keptn
-      extraEnv:
-        - name: COLLECTOR_OTLP_ENABLED
-          value: "true"
       
     # Storage configuration (in-memory for all-in-one)
     storage:
