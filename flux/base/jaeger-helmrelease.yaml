@@ -1,0 +1,66 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: jaeger
+  namespace: jaeger
+spec:
+  interval: 10m0s
+  timeout: 10m0s
+  chart:
+    spec:
+      chart: jaeger
+      version: '3.3.1'
+      sourceRef:
+        kind: HelmRepository
+        name: jaegertracing
+        namespace: flux-system
+      interval: 10m0s
+  install:
+    timeout: 10m0s
+    remediation:
+      retries: 3
+    crds: CreateReplace
+  upgrade:
+    timeout: 10m0s
+    remediation:
+      retries: 3
+      remediateLastFailure: true
+    crds: CreateReplace
+    cleanupOnFail: true
+  uninstall:
+    timeout: 5m
+  driftDetection:
+    mode: enabled
+  values:
+    # Deploy Jaeger all-in-one for simplicity
+    allInOne:
+      enabled: true
+      image: jaegertracing/all-in-one
+      tag: "1.52"
+      
+    # Expose Jaeger UI via NodePort
+    query:
+      service:
+        type: NodePort
+        nodePort: 30686
+    
+    # Enable gRPC collector for Keptn
+    collector:
+      service:
+        grpc:
+          port: 14250
+    
+    # Storage configuration (in-memory for now)
+    storage:
+      type: none
+    
+    # Jaeger agent disabled (using collector directly)
+    agent:
+      enabled: false
+    
+    # Disable separate collector/query (using all-in-one)
+    collector:
+      enabled: false
+    query:
+      enabled: false

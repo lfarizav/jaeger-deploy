@@ -1,0 +1,11 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: jaeger-deploy
+  namespace: jaeger
+spec:
+  interval: 5m0s
+  ref:
+    branch: main
+  url: https://github.com/lfarizav/jaeger-deploy

@@ -1,0 +1,19 @@
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Alert
+metadata:
+  name: slack-notif
+  namespace: jaeger
+spec:
+  summary: "Slack notifications for Jaeger"
+  eventSeverity: info
+  eventSources:
+  - kind: GitRepository
+    name: '*'
+  - kind: Kustomization
+    name: '*'
+  - kind: HelmRelease
+    name: '*'
+  providerRef:
+    name: slack-shared
+    namespace: flux-system

@@ -1,0 +1,11 @@
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Provider
+metadata:
+  name: slack
+  namespace: jaeger
+spec:
+  type: slack
+  channel: general
+  secretRef:
+    name: slack-url

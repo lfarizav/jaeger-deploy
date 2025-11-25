@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: jaeger
+resources:
+- jaeger-gitrepository.yaml
+- jaeger-helmrepository.yaml
+- jaeger-helmrelease.yaml
+- slack-provider.yaml
+- jaeger-alert.yaml
+- slack-notif-alert.yaml

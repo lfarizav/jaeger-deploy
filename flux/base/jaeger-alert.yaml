@@ -1,0 +1,19 @@
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Alert
+metadata:
+  name: jaeger-deploy
+  namespace: jaeger
+spec:
+  summary: "Jaeger deployment notifications"
+  eventMetadata:
+    env: "dev"
+    cluster: "local"
+    region: "local"
+  eventSources:
+    - kind: GitRepository
+      name: jaeger-deploy
+    - kind: HelmRelease
+      name: jaeger
+  providerRef:
+    name: slack
