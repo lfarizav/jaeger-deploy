@@ -14,7 +14,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: jaegertracing
-        namespace: flux-system
+        namespace: jaeger
       interval: 10m0s
   install:
     timeout: 10m0s
