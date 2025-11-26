@@ -5,6 +5,7 @@ resources:
 - jaeger-gitrepository.yaml
 - jaeger-helmrepository.yaml
 - jaeger-helmrelease.yaml
+- jaeger-query-nodeport.yaml
 - slack-provider.yaml
 - jaeger-alert.yaml
 - slack-notif-alert.yaml
