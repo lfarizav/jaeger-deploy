@@ -33,24 +33,40 @@ spec:
   driftDetection:
     mode: enabled
   values:
-    # Deploy Jaeger all-in-one for simplicity
+    # Deploy Jaeger all-in-one for simplicity with strict resource limits
     allInOne:
       enabled: true
       image:
         registry: docker.io
         repository: jaegertracing/all-in-one
         tag: "1.52"
+      # Strict resource limits to prevent CPU/memory spikes
+      resources:
+        requests:
+          cpu: 50m
+          memory: 64Mi
+        limits:
+          cpu: 200m
+          memory: 256Mi
       # Expose Jaeger UI via NodePort
       service:
         type: NodePort
         nodePort: 30686
+      # Additional args to optimize for low resource usage
+      extraArgs:
+        - "--sampling.strategies-file=/etc/jaeger/sampling_strategies.json"
+        - "--memory.max-traces=1000"
       
-    # Storage configuration (in-memory for all-in-one)
+    # Storage configuration (in-memory for all-in-one - minimal overhead)
     storage:
       type: memory
     
     # Disable cassandra (not needed for all-in-one)
     cassandra:
+      enabled: false
+    
+    # Disable elasticsearch (not needed for all-in-one)
+    elasticsearch:
       enabled: false
     
     # Disable separate components (using all-in-one)
@@ -59,4 +75,8 @@ spec:
     collector:
       enabled: false
     query:
+      enabled: false
+    
+    # Disable hotrod demo
+    hotrod:
       enabled: false
