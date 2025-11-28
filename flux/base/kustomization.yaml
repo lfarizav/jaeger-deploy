@@ -10,3 +10,4 @@ resources:
 - jaeger-alert.yaml
 - slack-notif-alert.yaml
 - resourcequota.yaml
+- slack-url-secret.yaml
