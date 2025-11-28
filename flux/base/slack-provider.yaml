@@ -6,6 +6,6 @@ metadata:
   namespace: jaeger
 spec:
   type: slack
-  channel: general
+  channel: jaeger
   secretRef:
     name: slack-url
